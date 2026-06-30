@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Update Profile</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone"><br><br>
+    <textarea name="address" placeholder="Address">{{ profile.address }}</textarea><br><br>
+
+    <button class="btn btn-success">Update</button>
+</form>
+
+{% endblock %}

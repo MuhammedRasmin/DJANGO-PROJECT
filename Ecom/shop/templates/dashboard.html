@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom:10px;">
+    Welcome {{ user.username }} 👋
+</h2>
+
+<div class="row mt-4">
+
+    <div class="col-md-3">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5>Total Orders</h5>
+                <h3>{{ orders.count }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5>Total Products</h5>
+                <h3>{{ products.count }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<h4 style="margin-top:30px;">Recent Orders</h4>
+
+{% for order in orders|slice:":3" %}
+   <div style="border:1px solid #ccc; padding:10px; margin:10px 0; border-radius:8px;">
+     <p><b>Order {{ order.id }}</b></p>
+     <p>{{ order.order_date }}</p>
+   </div>
+{% empty %}
+ <p>No orders yet</p>
+{% endfor %}
+
+{% endblock %}

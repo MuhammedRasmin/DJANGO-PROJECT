@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Products</h2>
+
+<div class="row">
+
+{% for product in products %}
+<div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+
+            <p><b>₹{{ product.price }}</b></p>
+            <p>Stock: {{ product.stock }}</p>
+
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success">Add to Cart </a>
+            <a href="{% url 'add_to_session_cart' product.id %}" class="btn btn-warning">Add to Session</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

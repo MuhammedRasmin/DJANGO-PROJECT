@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold">🛒 Your Cart</h2>
+
+<div class="row g-4">
+    {% for item in items %}
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 cart-card">
+
+            <div class="card-body text-center">
+
+                <!-- Product Name -->
+                <h5 class="fw-bold">{{ item.product.name }}</h5>
+
+                <!-- Price -->
+                <p class="text-muted small mb-2">₹{{ item.product.price }}</p>
+
+                <!-- Quantity -->
+                <div class="d-flex justify-content-center align-items-center mb-3">
+
+                    <a href="{% url 'decrease_quantity' item.id %}" 
+                       class="btn btn-light border btn-sm px-2">−</a>
+
+                    <span class="mx-3 fw-bold">{{ item.quantity }}</span>
+
+                    <a href="{% url 'increase_quantity' item.id %}" 
+                       class="btn btn-light border btn-sm px-2">+</a>
+
+                </div>
+
+                <!-- Item Total -->
+                <h6 class="fw-semibold text-success">
+                    ₹{{ item.total_price }}
+                </h6>
+
+                <!-- Remove -->
+                <a href="{% url 'remove_from_cart' item.id %}" 
+                   class="btn btn-outline-danger btn-sm mt-2">
+                   Remove
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    {% empty %}
+        <div class="text-center mt-5">
+            <h5>Your cart is empty 😕</h5>
+            <a href="{% url 'products' %}" class="btn btn-dark mt-2">
+                Browse Products
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<hr class="my-4">
+
+<!-- TOTAL BOX -->
+<div class="p-4 rounded shadow-sm d-flex justify-content-between align-items-center"
+     style="background-color: #f8f9fa;">
+
+    <h4 class="fw-bold mb-0">Total: ₹{{ total }}</h4>
+
+    <a href="{% url 'checkout' %}" class="btn btn-success px-4">
+     Checkout 💳
+    </a>
+
+</div>
+
+{% endblock %}

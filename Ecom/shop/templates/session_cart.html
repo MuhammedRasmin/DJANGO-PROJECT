@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Session Cart ⚡</h2>
+
+{% for key, item in cart.items %}
+<div class="card p-3 mb-3" style="max-width:400px;">
+    <h5>{{ item.name }}</h5>
+    <p>Qty: {{ item.quantity }}</p>
+    <p>Total: ₹{{ item.total }}</p>
+
+    <a href="{% url 'remove_session_item' key %}" class="btn btn-danger btn-sm">
+        Remove
+    </a>
+</div>
+{% empty %}
+<p>Cart is empty 😕</p>
+{% endfor %}
+
+<h4>Total: ₹{{ total }}</h4>
+
+{% endblock %}

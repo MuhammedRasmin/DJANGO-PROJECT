@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecommerce</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;   /* 🔥 better background */
+        }
+
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1100px;   /* 🔥 center layout */
+            margin: auto;
+        }
+
+        /* 🔥 CARD UPGRADE */
+        .card {
+            border: none;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 🔥 BUTTON IMPROVE */
+        .btn {
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">Ecommerce 🛒</a>
+
+    <div>
+      <a class="nav-link d-inline text-white" href="{% url 'home' %}">Home</a>
+      <a class="nav-link d-inline text-white" href="{% url 'products' %}">Products</a>
+      <a class="nav-link d-inline text-white" href="{% url 'dashboard' %}">Dashboard</a>
+
+      <!-- DB CART -->
+      <a class="nav-link d-inline text-white" href="{% url 'cart' %}">Cart 🛒</a>
+
+      <!-- SESSION CART -->
+      <a class="nav-link d-inline text-warning fw-bold" href="{% url 'session_cart' %}">
+        Session Cart 
+      </a>
+
+      <a class="nav-link d-inline text-white" href="{% url 'orders' %}">Orders</a>
+
+      <!-- PROFILE -->
+      <a class="nav-link d-inline text-info fw-bold" href="{% url 'profile' %}">
+        Profile 👤
+      </a>
+
+      <a class="nav-link d-inline text-danger" href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- 🔥 MAIN CONTENT -->
+<div class="container mt-4">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

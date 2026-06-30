@@ -1,0 +1,9 @@
+<p>Status: {{ order.status }}</p>
+
+<a href="{% url 'update_order' order.id %}" class="btn btn-success btn-sm">
+    Mark Delivered
+</a>
+
+<a href="{% url 'delete_order' order.id %}" class="btn btn-danger btn-sm">
+    Delete
+</a>
